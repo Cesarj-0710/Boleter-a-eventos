@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra tus entradas | Entrada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="comprar.css">
+</head>
+<body>
+  <header><a class="brand" href="comprar.html"><span>E</span>Entrada</a><p>Entradas seguras para grandes momentos</p></header>
+  <main>
+    <section class="hero"><p>PRÓXIMOS EVENTOS</p><h1>Encuentra tu próxima experiencia.</h1><span>Elige un evento, selecciona tus entradas y recibe tu confirmación.</span></section>
+    <section id="events" class="events"></section>
+  </main>
+  <dialog id="buy-modal"><form method="dialog" id="buy-form"><button type="button" class="close" id="close-buy" aria-label="Cerrar">×</button><p class="label">COMPRAR ENTRADAS</p><h2 id="event-name"></h2><p class="details" id="event-details"></p><input type="hidden" name="eventId"><label>Tu nombre<input required name="buyer" placeholder="Nombre y apellidos"></label><label>Correo electrónico<input required name="email" type="email" placeholder="correo@ejemplo.com"></label><label>Cantidad<input required name="quantity" min="1" type="number" value="1"></label><button class="buy" value="default">Continuar</button><small>Esta demostración no procesa pagos reales.</small></form></dialog>
+  <dialog id="success-modal"><section class="success"><div class="check">✓</div><p class="label">SOLICITUD RECIBIDA</p><h2>¡Gracias por tu interés!</h2><p id="success-message"></p><button class="buy" id="close-success">Volver a eventos</button></section></dialog>
+  <script src="comprar.js"></script>
+</body>
+</html>
