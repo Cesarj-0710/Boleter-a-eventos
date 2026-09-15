@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrada — Boletería de eventos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">E</span>Entrada</a>
+    <nav>
+      <button class="nav-item active" data-view="dashboard"><span>▦</span> Resumen</button>
+      <button class="nav-item" data-view="events"><span>◈</span> Eventos</button>
+      <button class="nav-item" data-view="sales"><span>▤</span> Ventas</button>
+      <button class="nav-item" data-view="checkin"><span>✓</span> Validar entrada</button>
+    </nav>
+    <div class="sidebar-footer"><span class="avatar">AO</span><div><strong>Organizador</strong><small>Administrador</small></div></div>
+  </aside>
+
+  <main>
+    <header><div><p class="eyebrow">PANEL DE CONTROL</p><h1 id="page-title">Buenos días, organizador</h1></div><button class="primary" id="new-event">+ Crear evento</button></header>
+
+    <section id="dashboard" class="view active">
+      <div class="metrics">
+        <article><span class="metric-icon purple">◈</span><div><small>ENTRADAS VENDIDAS</small><strong id="tickets-sold">0</strong><em id="tickets-note">Aún no hay ventas</em></div></article>
+        <article><span class="metric-icon amber">€</span><div><small>INGRESOS TOTALES</small><strong id="revenue">0,00 €</strong><em>Ventas confirmadas</em></div></article>
+        <article><span class="metric-icon green">✓</span><div><small>ASISTENTES VALIDADOS</small><strong id="checked-in">0</strong><em id="checkin-note">0% de las entradas</em></div></article>
+      </div>
+      <div class="grid">
+        <section class="panel events-panel"><div class="panel-title"><h2>Próximos eventos</h2><button class="link-button" data-go="events">Ver todos</button></div><div id="upcoming-events"></div></section>
+        <section class="panel activity"><div class="panel-title"><h2>Actividad reciente</h2></div><div id="recent-sales"></div></section>
+      </div>
+    </section>
+
+    <section id="events" class="view"><div class="section-head"><div><h2>Eventos</h2><p>Crea y administra tus experiencias.</p></div><button class="primary" id="new-event-2">+ Crear evento</button></div><div class="event-cards" id="event-list"></div></section>
+
+    <section id="sales" class="view"><div class="section-head"><div><h2>Ventas</h2><p>Registro de entradas emitidas.</p></div></div><div class="panel table-panel"><table><thead><tr><th>COMPRADOR</th><th>EVENTO</th><th>ENTRADA</th><th>IMPORTE</th><th>ESTADO</th></tr></thead><tbody id="sales-list"></tbody></table></div></section>
+
+    <section id="checkin" class="view"><div class="checkin-wrap"><p class="eyebrow">CONTROL DE ACCESO</p><h2>Validar una entrada</h2><p>Escribe el código de la entrada o utiliza el lector QR de tu dispositivo.</p><div class="validate-box"><label for="ticket-code">Código de entrada</label><div><input id="ticket-code" placeholder="Ej. ENT-8F2K9" autocomplete="off"><button class="primary" id="validate-ticket">Validar</button></div><small>Prueba con cualquier código de una entrada generada.</small></div><div id="validation-result"></div></div></section>
+  </main>
+
+  <dialog id="event-modal"><form method="dialog" id="event-form"><div class="modal-head"><div><p class="eyebrow">NUEVO EVENTO</p><h2>Crea una experiencia</h2></div><button class="close" value="cancel">×</button></div><label>Nombre del evento<input required name="name" placeholder="Ej. Festival de verano"></label><div class="form-row"><label>Fecha<input required type="date" name="date"></label><label>Hora<input required type="time" name="time" value="20:00"></label></div><label>Lugar<input required name="place" placeholder="Ej. Sala Central, Madrid"></label><div class="form-row"><label>Precio por entrada (€)<input required min="0" step="0.01" type="number" name="price" value="20"></label><label>Capacidad<input required min="1" type="number" name="capacity" value="100"></label></div><button class="primary wide" value="default">Crear evento</button></form></dialog>
+
+  <dialog id="sell-modal"><form method="dialog" id="sell-form"><div class="modal-head"><div><p class="eyebrow">NUEVA VENTA</p><h2 id="sell-event-name">Emitir entrada</h2></div><button class="close" value="cancel">×</button></div><input type="hidden" name="eventId"><label>Nombre del comprador<input required name="buyer" placeholder="Nombre y apellidos"></label><label>Correo electrónico<input required name="email" type="email" placeholder="correo@ejemplo.com"></label><label>Cantidad<input required name="quantity" type="number" value="1" min="1"></label><button class="primary wide" value="default">Confirmar y emitir</button></form></dialog>
+  <dialog id="ticket-modal"><div class="ticket"><button class="close ticket-close">×</button><p class="eyebrow">ENTRADA DIGITAL</p><h2 id="ticket-title"></h2><p id="ticket-detail"></p><div class="qr" id="ticket-qr"></div><code id="ticket-id"></code><p class="ticket-hint">Presenta este código en el acceso.</p></div></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
